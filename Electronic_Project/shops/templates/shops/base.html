@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Electra{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        /* تنسيقات الهيدر الرئيسي */
+.main-header {
+    background: linear-gradient(to right, #1c411f, #65cc6e); 
+    color: #fff;
+    padding: 15px 30px;
+    
+    /* لجعل الهيدر ثابتاً في الأعلى */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* لضمان ظهوره فوق المحتوى */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* إضافة ظل بسيط */
+}
+
+/* حاوية المحتوى داخل الهيدر */
+.header-content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto; /* توسيط الحاوية */
+    padding: 0 20px;
+}
+
+/* تنسيقات الشعار */
+.nav-logo {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* تنسيقات قائمة التنقل */
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* إضافة مساحة علوية للمحتوى لتجنب أن يختبئ تحت الهيدر الثابت */
+body {
+    padding-top: 70px; /* يجب أن تكون أكبر من ارتفاع الهيدر */
+}
+
+/*
+يمكنك حذف التنسيقات القديمة المتعلقة بـ .hero-header, .split-header, .header-video, .video-overlay, etc.
+لأنها لم تعد ضرورية.
+*/
+    </style>
+</head>
+<body dir="rtl">
+
+    <!-- الهيدر -->
+   <header class="main-header">
+    <div class="header-content-container">
+        <div class="nav-logo">Electra</div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">الرئيسية</a></li>
+                {% if user.is_authenticated and user.is_superuser %}
+                    <li><a href="{% url 'shop_list' %}">المحلات</a></li>
+                {% endif %}
+                <li><a href="{% url 'login' %}">تسجيل الدخول</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+    <!-- محتوى الصفحة -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- الفوتر -->
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="about">
+                <h3>عن Electra</h3>
+                <p>منصتنا تربط بين المستخدمين وأصحاب المحلات بسهولة وسرعة.</p>
+            </div>
+          <!-- <div class="links">
+                <h3>روابط سريعة</h3>
+                <ul>
+                    <li><a href="#">من نحن</a></li>
+                    <li><a href="#">تواصل معنا</a></li>
+                    <li><a href="#">شروط الاستخدام</a></li>
+                </ul>
+            </div> 
+            <div class="hours">
+                <h3>ساعات العمل</h3>
+                <p>السبت – الخميس: 8 صباحاً – 8 مساءً</p>
+                <p>الجمعة: مغلق</p>
+            </div>
+            <div class="subscribe">
+                <h3>اشترك في النشرة</h3>
+                <input type="email" placeholder="أدخل بريدك">
+                <button>اشترك</button>
+            </div>
+        </div>-->
+        <p class="copy">© 2025 جميع الحقوق محفوظة لـ Electra</p>
+    </footer>
+</body>
+</html>

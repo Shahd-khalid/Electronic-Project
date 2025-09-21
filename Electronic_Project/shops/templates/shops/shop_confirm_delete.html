@@ -1,0 +1,12 @@
+{% extends "shops/base.html" %}
+
+{% block title %}تأكيد الحذف{% endblock %}
+
+{% block content %}
+<h2>هل تريد حذف {{ shop.name }}؟</h2>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">تأكيد الحذف</button>
+</form>
+<a href="{% url 'shop_detail' shop.pk %}">إلغاء</a>
+{% endblock %}

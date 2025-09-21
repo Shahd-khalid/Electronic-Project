@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}جميع المحلات{% endblock %}
+
+{% block content %}
+<h2 style="text-align:center; margin: 20px 0;" clss="pp" >جميع   المحلات</h2>
+
+<div class="shops-grid2">
+    {% for shop in shops %}
+        <div class="shop-card2">
+            <div class="shop-icon-container2">
+                {% if shop.logo %}
+                    <img src="{{ shop.logo.url }}" alt="شعار {{ shop.name }}" class="shop-logo2"> 
+                {% else %}
+                    <span class="default-icon">🛒</span>
+                {% endif %}
+            </div>
+            <h3>{{ shop.name }}</h3>
+            <p>{{ shop.address }}</p>
+            <a href="#" class="shop-details-link">→</a>
+        </div>
+    {% empty %}
+        <p style="text-align:center;">لا توجد محلات حالياً.</p>
+    {% endfor %}
+</div>
+{% endblock %}

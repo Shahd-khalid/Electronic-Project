@@ -1,0 +1,25 @@
+/* static/css/style.css */
+
+/* تعديل شكل الجدول */
+.table th, .table td {
+    vertical-align: middle;
+}
+
+/* زر الإضافة */
+.btn-success {
+    background-color: #198754;
+    border: none;
+}
+
+/* تحسين شكل الصور */
+table img {
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* مركز العناوين */
+h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}

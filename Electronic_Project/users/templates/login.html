@@ -1,0 +1,15 @@
+{% extends "shops/base.html" %}
+
+{% block title %}تسجيل الدخول{% endblock %}
+
+{% block content %}
+<h2>تسجيل الدخول</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+</form>
+
+<p>ليس لديك حساب؟ <a href="{% url 'user_create' %}">إنشاء حساب جديد</a></p>
+{% endblock %}

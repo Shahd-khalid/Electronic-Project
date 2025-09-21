@@ -1,0 +1,19 @@
+{% extends "shops/base.html" %}
+
+{% block title %}{{ form.instance.pk|yesno:"تعديل محل,إضافة محل" }}{% endblock %}
+
+{% block content %}
+<h2>{{ form.instance.pk|yesno:"تعديل محل,إضافة محل" }}</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+     <label>اسم المالك:</label>
+    <input type="text" name="owner_username" class="form-control">
+
+    <label>اسم المندوب:</label>
+    <input type="text" name="delivery_username" class="form-control">
+
+    <button type="submit">حفظ</button>
+</form>
+{% endblock %}

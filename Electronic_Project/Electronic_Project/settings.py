@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'shops',
+    'users',
+    #'Products'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +58,7 @@ ROOT_URLCONF = 'Electronic_Project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,8 +78,12 @@ WSGI_APPLICATION = 'Electronic_Project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'my_electra_DB',      # اسم قاعدة البيانات التي أنشأتها
+        'USER': 'postgres',          # اسم المستخدم (في حالتك هو postgres)
+        'PASSWORD': 'shsh aaaaq2', # كلمة المرور التي أدخلتها أثناء التثبيت
+        'HOST': 'localhost',         # أو 127.0.0.1 إذا كان الخادم على نفس الجهاز
+        'PORT': '5432', 
     }
 }
 
@@ -114,7 +122,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+
+# المجلد اللي بيحفظ فيه الملفات وقت التطوير
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
+# مكان جمع كل الملفات عند عمل collectstatic (وقت التشغيل في السيرفر)
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

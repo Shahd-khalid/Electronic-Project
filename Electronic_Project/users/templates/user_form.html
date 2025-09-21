@@ -1,0 +1,13 @@
+<!-- users/templates/users/user_form.html -->
+{% extends "shops/base.html" %}
+
+{% block title %}إنشاء مستخدم جديد{% endblock %}
+
+{% block content %}
+<h2>إنشاء مستخدم جديد</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">حفظ</button>
+</form>
+{% endblock %}

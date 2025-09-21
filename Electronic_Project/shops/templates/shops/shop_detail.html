@@ -1,0 +1,31 @@
+{% extends "shops/base.html" %}
+{% block title %}إدارة المحلات{% endblock %}
+
+{% block content %}
+<div class="shops-container">
+    <h1>إدارة المحلات</h1>
+
+    <!-- زر إضافة محل -->
+    <div class="add-shop-btn">
+        <a href="{% url 'shop_create' %}">➕ إضافة محل</a>
+    </div>
+
+    <!-- قائمة المحلات -->
+    {% for shop in shops %}
+        <div class="shop-card">
+            <img src="{{ shop.logo.url }}" alt="شعار {{ shop.name }}" class="shop-logo">
+            <div class="shop-info">
+                <h2>{{ shop.name }}</h2>
+                <p><strong>العنوان:</strong> {{ shop.address }}</p>
+            </div>
+            <div class="shop-actions">
+                <a href="{% url 'shop_update' shop.id %}" class="edit-btn">✏ تعديل</a>
+                <a href="{% url 'shop_delete' shop.id %}" class="delete-btn">🗑 حذف</a>
+            </div>
+
+        </div>
+    {% empty %}
+        <p>لا توجد محلات حالياً.</p>
+    {% endfor %}
+</div>
+{% endblock %}
